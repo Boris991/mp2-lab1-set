@@ -2,6 +2,7 @@
 
 #include <gtest.h>
 
+
 TEST(TBitField, can_create_bitfield_with_positive_length)
 {
   ASSERT_NO_THROW(TBitField bf(3));
@@ -309,3 +310,13 @@ TEST(TBitField, bitfields_with_different_bits_are_not_equal)
 
   EXPECT_NE(bf1, bf2);
 }
+TEST(TBitField, double_bit_cleaning )
+{
+    const int size = 1;
+    TBitField bf1(size);
+    bf1.SetBit(0);
+    bf1.ClrBit(0);
+    bf1.ClrBit(0);
+    EXPECT_EQ(0, bf1.GetBit(0));
+}
+
