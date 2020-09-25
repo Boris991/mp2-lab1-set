@@ -1,7 +1,7 @@
 #include "tset.h"
 
 #include <gtest.h>
-/*
+
 TEST(TSet, can_get_max_power_set)
 {
   const int size = 5;
@@ -295,4 +295,20 @@ TEST(TSet, check_negation_operator)
 
   EXPECT_EQ(expSet, set1);
 }
-*/
+TEST(TSet,unification_some_operations)
+{
+    const int size1 = 4;
+    const int size2 = 5;
+    const int size3 = 3;
+    TSet set1(size1),set2(size2),set3(size3);
+    set1.InsElem(0);
+    set1.InsElem(3);//set1={0,3}
+    set2.InsElem(1);
+    set2.InsElem(4);//set2={1,4}
+    set3.InsElem(2);//set3={2}
+    set3 = ~set3;//set3={0,1}
+    TSet set4 = set1 + set2 + set3;//set4={0,1,3,4}
+    set2.InsElem(0);
+    set2.InsElem(3);//set2={0,1,3,4}
+    EXPECT_EQ(set2, set4);
+}
